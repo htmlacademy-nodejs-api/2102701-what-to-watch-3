@@ -1,7 +1,7 @@
 # Личный проект «Что посмотреть»
 
 * Студент: [Сергей Савельев](https://up.htmlacademy.ru/nodejs-api/3/user/2102701).
-* Наставник: `Неизвестно`.
+* Наставник: [Владимир Ульянов](https://htmlacademy.ru/profile/lionskape).
 
 ---
 
