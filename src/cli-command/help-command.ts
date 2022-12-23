@@ -15,5 +15,5 @@ export default class HelpCommand implements CliCommandInterface {
             --import <path>:             # импортирует данные из TSV
             --generate <n> <path> <url>  # генерирует произвольное количество тестовых данных
         `));
-  };
-};
+  }
+}

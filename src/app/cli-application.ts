@@ -22,7 +22,7 @@ export default class CLIApplication {
 
       return acc;
     }, parsedCommand);
-  };
+  }
 
   public registerCommands(commandList: CliCommandInterface[]): void {
     commandList.reduce((acc, command) => {
@@ -30,11 +30,11 @@ export default class CLIApplication {
       acc[cliCommand.name] = cliCommand;
       return acc;
     }, this.commands);
-  };
+  }
 
   public getCommand(commandName: string): CliCommandInterface {
     return this.commands[commandName] ?? this.commands[this.defaultCommand];
-  };
+  }
 
   public processCommand(argv: string[]): void {
     const parsedCommand = this.parseCommand(argv);
@@ -42,6 +42,6 @@ export default class CLIApplication {
     const command = this.getCommand(commandName);
     const commandArguments = parsedCommand[commandName] ?? [];
     command.execute(...commandArguments);
-  };
+  }
 
-};
+}
