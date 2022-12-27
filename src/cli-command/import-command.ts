@@ -9,7 +9,7 @@ export default class ImportCommand implements CliCommandInterface {
 
     try {
       fileReader.read();
-      console.log(fileReader.toArray());
+      console.log(`${chalk.green(JSON.stringify(fileReader.toArray(), null, 2))}`)
     } catch (err) {
 
       if (!(err instanceof Error)) {
