@@ -1,11 +1,11 @@
-import { GenreType } from './genre-type.enum.js';
+import { Genre } from './genre.type.js';
 import { User } from './user.type.js';
 
 export type Film = {
   title: string;
   description: string;
   postDate: Date;
-  genre: GenreType;
+  genre: Genre[];
   releaseDate: string;
   rating: string;
   previewVideo: string;
@@ -18,4 +18,5 @@ export type Film = {
   poster: string;
   backgroundImg: string;
   bacgroundColor: string;
+  favoritesFlag: boolean;
 };

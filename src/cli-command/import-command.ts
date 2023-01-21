@@ -13,6 +13,9 @@ import {UserModel} from '../modules/user/user.entity.js';
 import {Film} from '../types/film.type.js';
 import {LoggerInterface} from '../common/logger/logger.interface.js';
 import {DatabaseInterface} from '../common/database-client/database.interface.js';
+import {GenreServiceInterface} from '../modules/genre/genre-service.interface.js';
+import GenreService from '../modules/genre/genre.service.js';
+import {GenreModel} from '../modules/genre/genre.entity.js';
 // import chalk from 'chalk';
 
 const DEFAULT_DB_PORT = 27017;
@@ -22,6 +25,7 @@ export default class ImportCommand implements CliCommandInterface {
   public readonly name = '--import';
 
   private userService!: UserServiceInterface;
+  private genreService!: GenreServiceInterface;
   private filmService!: FilmServiceInterface;
   private databaseService!: DatabaseInterface;
   private logger: LoggerInterface;
@@ -33,18 +37,26 @@ export default class ImportCommand implements CliCommandInterface {
 
     this.logger = new ConsoleLoggerService();
     this.filmService = new FilmService(this.logger, FilmModel);
+    this.genreService = new GenreService(this.logger, GenreModel);
     this.userService = new UserService(this.logger, UserModel);
     this.databaseService = new DatabaseService(this.logger);
   }
 
   private async saveFilm(film: Film) {
+    const genres = [];
     const user = await this.userService.findOrCreate({
       ...film.user,
       password: DEFAULT_USER_PASSWORD
     }, this.salt);
 
+    for (const {name} of film.genre) {
+      const existGenre = await this.genreService.findByGenreNameOrCreate(name, {name});
+      genres.push(existGenre.id);
+    }
+
     await this.filmService.create({
       ...film,
+      genres,
       userId: user.id,
     });
   }
