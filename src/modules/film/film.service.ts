@@ -31,17 +31,6 @@ export default class FilmService implements FilmServiceInterface {
       .exec();
   }
 
-  public async findByFavoritesFlag(): Promise<DocumentType<FilmEntity>[]> {
-    return this.filmModel
-      .find({
-        favoritesFlag: true
-      })
-      .populate(['userId', 'genres'])
-      .exec();
-  }
-
-
-
   public async find(): Promise<DocumentType<FilmEntity>[]> {
     return this.filmModel
       .find()
@@ -77,10 +66,51 @@ export default class FilmService implements FilmServiceInterface {
       .exists({_id: documentId})) !== null;
   }
 
-  public async incCommentCount(offerId: string): Promise<DocumentType<FilmEntity> | null> {
+  public async incCommentCount(filmId: string): Promise<DocumentType<FilmEntity> | null> {
     return this.filmModel
-      .findByIdAndUpdate(offerId, {'$inc': {
+      .findByIdAndUpdate(filmId, {'$inc': {
         commentCount: 1,
       }}).exec();
+  }
+
+  public async findWatchlist(): Promise<DocumentType<FilmEntity>[]> {
+    return this.filmModel
+      .aggregate([
+        {
+          $lookup: {
+            from: 'watchlist',
+            let: { userId: '$_id'},
+            pipeline: [
+              { $match: { $expr: { $in: ['$$userId', '$users'] } } },
+              { $project: { _id: 1}}
+            ],
+            as: 'filmsInWatchlist'
+          },
+        },
+        { $addFields:
+          { id: { $toString: '$_id'}, filmsInWatchlistCount: { $size: '$filmsInWatchlist'} }
+        },
+      ]).exec();
+  }
+
+  public async findRatingScore(): Promise<DocumentType<FilmEntity>[]> {
+    return this.filmModel
+      .aggregate([
+        {
+          $lookup: {
+            from: 'comments',
+            let: { filmId: '$_id', rating: '$rating' },
+            pipeline: [
+              { $match: { $expr: { $in: ['$$filmId', '$comments'] } } },
+              { $project: { _id: 1}}
+            ],
+            as: 'comments'
+          },
+        },
+        { $addFields:
+          { id: { $toString: '$_id'}, ratingScore: { $avg: '$comments.rating'} }
+        },
+        { $unset: 'comments' },
+      ]).exec();
   }
 }

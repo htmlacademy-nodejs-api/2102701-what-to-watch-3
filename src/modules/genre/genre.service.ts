@@ -1,6 +1,6 @@
 import {inject, injectable} from 'inversify';
 import {DocumentType, ModelType} from '@typegoose/typegoose/lib/types.js';
-import {GenreServiceInterface} from './genre-service.interface.js'
+import {GenreServiceInterface} from './genre-service.interface.js';
 import {Component} from '../../types/component.types.js';
 import {LoggerInterface} from '../../common/logger/logger.interface.js';
 import {GenreEntity} from './genre.entity.js';
@@ -45,10 +45,10 @@ export default class GenreService implements GenreServiceInterface {
       .aggregate([
         {
           $lookup: {
-            from: 'genres',
+            from: 'films',
             let: { genreId: '$_id'},
             pipeline: [
-              { $match: { $expr: { $in: ['$$genreId', '$genre'] } } },
+              { $match: { $expr: { $in: ['$$genreId', '$genres'] } } },
               { $project: { _id: 1}}
             ],
             as: 'films'
@@ -57,7 +57,7 @@ export default class GenreService implements GenreServiceInterface {
         { $addFields:
           { id: { $toString: '$_id'}, filmCount: { $size: '$films'} }
         },
-        { $unset: 'offers' },
+        { $unset: 'films' },
         { $limit: MAX_GENRES_COUNT},
         { $sort: { filmsCount: SortType.Down } }
       ]).exec();

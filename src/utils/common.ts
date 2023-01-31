@@ -23,14 +23,13 @@ export const createFilm = (row: string) => {
     password,
     backgroundImg,
     bacgroundColor,
-    favoritesFlag,
   ] = tokens;
   return {
     title,
     description,
     postDate: new Date(createdDate),
     genre: genres.split(';')
-      .map((name) => ({name})),
+      .map((nameGenre) => ({nameGenre})),
     releaseDate,
     rating,
     previewVideo,
@@ -43,7 +42,6 @@ export const createFilm = (row: string) => {
     user: {name, email, avatarPath, password},
     backgroundImg,
     bacgroundColor,
-    favoritesFlag: !!parseInt(favoritesFlag)
   } as Film;
 };
 

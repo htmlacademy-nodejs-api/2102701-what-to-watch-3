@@ -7,13 +7,15 @@ import {Component} from './types/component.types.js';
 import {userContainer} from './modules/user/user.container.js';
 import {genreContainer} from './modules/genre/genre.container.js';
 import {commentContainer} from './modules/comment/comment.container.js';
+import {watchlistContainer} from './modules/watchlist/watchlist.container.js';
 
 const mainContainer = Container.merge(
   applicationContainer,
   userContainer,
   filmContainer,
   genreContainer,
-  commentContainer
+  commentContainer,
+  watchlistContainer
 );
 
 async function bootstrap() {

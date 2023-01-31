@@ -6,4 +6,5 @@ export interface CommentServiceInterface {
   create(dto: CreateCommentDto): Promise<DocumentType<CommentEntity>>;
   findByFilmId(filmId: string): Promise<DocumentType<CommentEntity>[]>;
   deleteByFilmId(filmId: string): Promise<number | null>;
+  findCommetsCount(): Promise<DocumentType<CommentEntity>[]>;
 }

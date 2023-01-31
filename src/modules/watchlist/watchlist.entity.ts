@@ -4,16 +4,16 @@ import {FilmEntity} from '../film/film.entity.js';
 
 const {prop, modelOptions} = typegoose;
 
-export interface CommentEntity extends defaultClasses.Base {}
+export interface WatchlistEntity extends defaultClasses.Base {}
 
 @modelOptions({
   schemaOptions: {
-    collection: 'comments'
+    collection: 'watchlist'
   }
 })
-export class CommentEntity extends defaultClasses.TimeStamps {
+export class WatchlistEntity extends defaultClasses.TimeStamps {
   @prop({trim: true, required: true})
-  public text!: string;
+  public id!: string;
 
   @prop({
     ref: FilmEntity,
@@ -26,9 +26,6 @@ export class CommentEntity extends defaultClasses.TimeStamps {
     required: true,
   })
   public userId!: Ref<UserEntity>;
-
-  @prop({trim: true, required: true})
-  public rating!: number;
 }
 
-export const CommentModel = getModelForClass(CommentEntity);
+export const WatchlistModel = getModelForClass(WatchlistEntity);
