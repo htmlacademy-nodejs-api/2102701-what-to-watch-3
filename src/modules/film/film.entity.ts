@@ -30,7 +30,7 @@ export class FilmEntity extends defaultClasses.TimeStamps {
   public postDate!: Date;
 
   @prop({required: true})
-  public genre!: string;
+  public genres!: string[];
 
   @prop({required: true})
   public releaseDate!: string;
@@ -70,6 +70,7 @@ export class FilmEntity extends defaultClasses.TimeStamps {
 
   @prop({required: true})
   public bacgroundColor!: string;
+
 }
 
 export const FilmModel = getModelForClass(FilmEntity);

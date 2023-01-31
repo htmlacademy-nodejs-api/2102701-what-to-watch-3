@@ -1,4 +1,3 @@
-import { GenreType } from '../types/genre-type.enum.js';
 import { Film } from '../types/film.type.js';
 import crypto from 'crypto';
 
@@ -8,7 +7,7 @@ export const createFilm = (row: string) => {
     title,
     description,
     createdDate,
-    genre,
+    genres,
     releaseDate,
     rating,
     previewVideo,
@@ -23,13 +22,14 @@ export const createFilm = (row: string) => {
     avatarPath,
     password,
     backgroundImg,
-    bacgroundColor
+    bacgroundColor,
   ] = tokens;
   return {
     title,
     description,
     postDate: new Date(createdDate),
-    genre: GenreType[genre as 'Comedy' | 'Crime' | 'Documentary' | 'Drama' | 'Horror' | 'Family' | 'Romance' | 'SciFi' | 'Thriller'],
+    genre: genres.split(';')
+      .map((nameGenre) => ({nameGenre})),
     releaseDate,
     rating,
     previewVideo,

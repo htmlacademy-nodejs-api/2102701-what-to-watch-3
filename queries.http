@@ -2,3 +2,7 @@
 GET http://localhost:3123/api HTTP/1.1
 
 ###
+
+get http://localhost:3123/films HTTP/1.1
+
+###
