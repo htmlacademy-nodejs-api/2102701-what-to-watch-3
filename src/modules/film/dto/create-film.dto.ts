@@ -11,9 +11,8 @@ export default class CreateFilmDto {
   public actors!: string[];
   public director!: string;
   public runTime!: string;
-  public userId!: string;
+  public userId?: string;
   public poster!: string;
   public backgroundImg!: string;
   public bacgroundColor!: string;
-  public favoritesFlag!: boolean;
 }

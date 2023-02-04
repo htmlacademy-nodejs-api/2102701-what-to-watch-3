@@ -26,8 +26,8 @@ export default class GenreService implements GenreServiceInterface {
     return this.genreModel.findById(genreId).exec();
   }
 
-  public async findByGenreName(genreName: string): Promise<DocumentType<GenreEntity> | null> {
-    return this.genreModel.findOne({name: genreName}).exec();
+  public async findByGenreName(genre: string): Promise<DocumentType<GenreEntity> | null> {
+    return this.genreModel.findOne({name: genre}).exec();
   }
 
   public async findByGenreNameOrCreate(genreName: string, dto: CreateGenreDto): Promise<DocumentType<GenreEntity>> {

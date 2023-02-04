@@ -57,7 +57,7 @@ paths:
             schema:
               $ref: '#/components/schemas/userEnterApp'
       responses:
-        '201':
+        '200':
           description: Вход произведён
           content:
             application/json:
@@ -81,7 +81,7 @@ paths:
               $ref: '#/components/schemas/token'
 
       responses:
-        '201':
+        '200':
           description: Выход произведён
         '409':
           description: Выход не произвёден

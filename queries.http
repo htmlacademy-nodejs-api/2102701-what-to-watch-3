@@ -1,8 +1,102 @@
-# Тестовые данные
-GET http://localhost:3123/api HTTP/1.1
+# Фильмы
+## Получить список фильмов
+
+GET http://localhost:4000/films HTTP/1.1
+Content-Type: application/json
 
 ###
 
-get http://localhost:3123/films HTTP/1.1
+## Создать новый фильм
+
+POST http://localhost:4000/films HTTP/1.1
+Content-Type: application/json
+
+{
+  "title": "sdfsdfsdfsdf",
+  "description": "asdasdnfdhgfdhgdhgdhgdhgchtdh",
+  "postDate": "2003-01-10",
+  "genres": ["qweqwe"],
+  "releaseDate": "erer",
+  "rating": 8,
+  "previewVideo": "ererer",
+  "video": "dfdf",
+  "actors": ["klkl"],
+  "director": "l;;l",
+  "runTime": "zxzx",
+  "poster": "qwqwqwqwq",
+  "backgroundImg": "xcxcxcxc",
+  "bacgroundColor": "nmnmmn"
+}
+
+###
+
+## Обновить фильм
+
+PATCH http://localhost:4000/films HTTP/1.1
+Content-Type: application/json
+
+{
+  "id": "63de2d37835d455ad5ea571a",
+  "title": "длдлдлlklklkl",
+  "description": "asdasdnfdhgfdhgdhgdhgdhgchtdh",
+  "postDate": "2003-01-10",
+  "genres": ["qweqwe"],
+  "releaseDate": "erer",
+  "rating": 8,
+  "previewVideo": "ererer",
+  "video": "dfdf",
+  "actors": ["klkl"],
+  "director": "l;;l",
+  "runTime": "zxzx",
+  "poster": "qwqwqwqwq",
+  "backgroundImg": "xcxcxcxc",
+  "bacgroundColor": "nmnmmn"
+}
+
+###
+
+#Жанры
+## Получить список жанров
+
+GET http://localhost:4000/genres HTTP/1.1
+Content-Type: application/json
+
+###
+
+## Создать новый жанр
+
+POST http://localhost:4000/genres HTTP/1.1
+Content-Type: application/json
+
+{
+  "name": "Actionjj"
+}
+
+###
+
+# Пользователи
+## Регистрация пользователя
+
+POST http://localhost:4000/users/register HTTP/1.1
+Content-Type: application/json
+
+{
+  "email": "torans@overloo.net",
+  "avatarPath": "torrance.png",
+  "name": "John",
+  "password": "shining"
+}
+
+###
+
+## Авторизация пользователя
+
+POST http://localhost:4000/users/login HTTP/1.1
+Content-Type: application/json
+
+{
+  "email": "torans@overlook.net",
+  "password": "123456"
+}
 
 ###

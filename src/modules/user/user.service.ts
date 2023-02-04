@@ -43,4 +43,5 @@ export default class UserService implements UserServiceInterface {
       .findByIdAndUpdate(userId, dto, {new: true})
       .exec();
   }
+
 }
