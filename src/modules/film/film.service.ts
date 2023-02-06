@@ -53,10 +53,10 @@ export default class FilmService implements FilmServiceInterface {
       .exec();
   }
 
-  public async findByGenreId(genreId: string, count?: number): Promise<DocumentType<FilmEntity>[]> {
+  public async findByGenreName(genreName: string, count?: number): Promise<DocumentType<FilmEntity>[]> {
     const limit = count ?? DEFAULT_FILM_COUNT;
     return this.filmModel
-      .find({genres: genreId}, {}, {limit})
+      .find({genres: genreName}, {}, {limit})
       .populate(['userId', 'genres'])
       .exec();
   }

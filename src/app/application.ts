@@ -18,9 +18,9 @@ export default class Application {
     @inject(Component.ConfigInterface) private config: ConfigInterface,
     @inject(Component.DatabaseInterface) private databaseClient: DatabaseInterface,
     @inject(Component.GenreController) private genreController: ControllerInterface,
-    @inject(Component.ExceptionFilterInterface) private exceptionFilter: ExceptionFilterInterface,
     @inject(Component.UserController) private userController: ControllerInterface,
     @inject(Component.FilmController) private filmController: ControllerInterface,
+    @inject(Component.ExceptionFilterInterface) private exceptionFilter: ExceptionFilterInterface,
   ) {
     this.expressApp = express();
   }
@@ -29,15 +29,15 @@ export default class Application {
     this.expressApp.use('/genres', this.genreController.router);
     this.expressApp.use('/users', this.userController.router);
     this.expressApp.use('/films', this.filmController.router);
-  };
+  }
 
   public initMiddleware() {
     this.expressApp.use(express.json());
-  };
+  }
 
   public initExceptionFilters() {
     this.expressApp.use(this.exceptionFilter.catch.bind(this.exceptionFilter));
-  };
+  }
 
   public async init() {
     this.logger.info('Application initialization...');

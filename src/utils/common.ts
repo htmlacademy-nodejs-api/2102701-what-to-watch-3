@@ -31,7 +31,7 @@ export const createFilm = (row: string) => {
     description,
     postDate: new Date(createdDate),
     genre: genres.split(';')
-      .map((name) => ({name})),
+      .map((genreName) => ({name: genreName})),
     releaseDate,
     rating,
     previewVideo,

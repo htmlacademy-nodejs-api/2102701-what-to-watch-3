@@ -6,7 +6,6 @@ import {LoggerInterface} from '../../common/logger/logger.interface.js';
 import {HttpMethod} from '../../types/http-method.enum.js';
 import {StatusCodes} from 'http-status-codes';
 import {fillDTO} from '../../utils/common.js';
-//import HttpError from '../../common/errors/http-errors.js';
 import CreateFilmDto from './dto/create-film.dto.js';
 import { FilmServiceInterface } from './film-service.interface.js';
 import FilmResponse from './response/film.response.js';
@@ -24,14 +23,12 @@ export default class FilmController extends Controller {
 
     this.logger.info('Register routes for FilmController...');
     this.addRoute({path: '/', method: HttpMethod.Get, handler: this.index});
-    //this.addRoute({path: '/details', method: HttpMethod.Get, handler: this.index});
     this.addRoute({path: '/', method: HttpMethod.Post, handler: this.create});
     this.addRoute({path: '/', method: HttpMethod.Delete, handler: this.delete});
     this.addRoute({path: '/', method: HttpMethod.Patch, handler: this.update});
   }
 
   public async index(_req: Request, res: Response): Promise<void> {
-    //_req.query.filmId
     const films = await this.filmService.find();
     const filmResponse = fillDTO(FilmResponse, films);
     this.send(res, StatusCodes.OK, filmResponse);

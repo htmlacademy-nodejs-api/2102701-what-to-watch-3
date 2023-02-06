@@ -39,8 +39,8 @@ export default class GenreController extends Controller {
     if (existGenre) {
       throw new HttpError(
         StatusCodes.UNPROCESSABLE_ENTITY,
-        `Category with name «${body.name}» exists.`,
-        'CategoryController'
+        `Genre with name «${body.name}» exists.`,
+        'GenreController'
       );
     }
 

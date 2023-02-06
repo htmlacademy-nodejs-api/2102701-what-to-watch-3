@@ -51,7 +51,6 @@ export default class UserController extends Controller {
 
   public async login(
     {body}: Request<Record<string, unknown>, Record<string, unknown>, LoginUserDto>,
-    _res: Response,
   ): Promise<void> {
     const existsUser = await this.userService.findByEmail(body.email);
 

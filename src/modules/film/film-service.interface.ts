@@ -9,7 +9,7 @@ export interface FilmServiceInterface {
   find(): Promise<DocumentType<FilmEntity>[]>;
   deleteById(filmId: string): Promise<DocumentType<FilmEntity> | null>;
   updateById(filmId: string, dto: UpdateFilmDto): Promise<DocumentType<FilmEntity> | null>;
-  findByGenreId(genreId: string, count?: number): Promise<DocumentType<FilmEntity>[]>;
+  findByGenreName(genreName: string, count?: number): Promise<DocumentType<FilmEntity>[]>;
   incCommentCount(filmId: string): Promise<DocumentType<FilmEntity> | null>;
   exists(documentId: string): Promise<boolean>;
   findWatchlist(): Promise<DocumentType<FilmEntity>[]>;
