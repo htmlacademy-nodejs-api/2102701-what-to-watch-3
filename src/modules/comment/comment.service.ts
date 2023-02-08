@@ -30,24 +30,5 @@ export default class CommentService implements CommentServiceInterface {
     return result.deletedCount;
   }
 
-  public async findCommetsCount(): Promise<DocumentType<CommentEntity>[]> {
-    return this.commentModel
-      .aggregate([
-        {
-          $lookup: {
-            from: 'films',
-            let: { commentId: '$_id'},
-            pipeline: [
-              { $match: { $expr: { $in: ['$$commentId', '$comments'] } } },
-              { $project: { _id: 1}}
-            ],
-            as: 'comments'
-          },
-        },
-        { $addFields:
-          { id: { $toString: '$_id'}, commentsCount: { $size: '$comments'} }
-        },
-        { $unset: 'comments' },
-      ]).exec();
-  }
+
 }

@@ -13,4 +13,5 @@ export interface FilmServiceInterface {
   incCommentCount(filmId: string): Promise<DocumentType<FilmEntity> | null>;
   exists(documentId: string): Promise<boolean>;
   findWatchlist(): Promise<DocumentType<FilmEntity>[]>;
+  findWithCommetsCount(filmId: string): Promise<DocumentType<FilmEntity>[]>;
 }

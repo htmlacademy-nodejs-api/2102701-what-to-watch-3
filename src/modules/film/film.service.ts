@@ -113,4 +113,28 @@ export default class FilmService implements FilmServiceInterface {
         { $unset: 'comments' },
       ]).exec();
   }
+
+  public async findWithCommetsCount(filmId: string): Promise<DocumentType<FilmEntity>[]> {
+    return this.filmModel
+      .aggregate([
+        {
+          $match: { id: filmId}
+        },
+        {
+          $lookup: {
+            from: 'comments',
+            let: { commentId: '$_id'},
+            pipeline: [
+              { $match: { $expr: { $in: ['$$commentId', '$comments'] } } },
+              { $project: { _id: 1}}
+            ],
+            as: 'comments'
+          },
+        },
+        { $addFields:
+          { id: { $toString: '$_id'}, commentsCount: { $size: '$comments'} }
+        },
+        { $unset: 'comments' },
+      ]).exec();
+  }
 }
