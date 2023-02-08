@@ -8,4 +8,6 @@ export default class FilmResponse {
   @Expose()
   public title!: string;
 
+  @Expose()
+  public commentsCount!: string;
 }

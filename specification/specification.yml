@@ -129,7 +129,7 @@ paths:
           description: Фильм не создан. Данные невалидны.
 
   /films/updateFilm:
-    put:
+    patch:
       tags:
         - films
       summary: Обновление фильма
@@ -177,7 +177,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/filmInList'
 
-  /films/filmsListToGenre:
+  /films/{genreId}/films:
     get:
       tags:
         - films
@@ -193,7 +193,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/filmInList'
 
-  /films/filmDetails:
+  /films/{filmId}/details:
     get:
       tags:
         - films

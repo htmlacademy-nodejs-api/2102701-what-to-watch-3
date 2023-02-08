@@ -6,6 +6,18 @@ Content-Type: application/json
 
 ###
 
+###
+
+## Получить детальную инфу по фильму
+
+GET http://localhost:4000/films/63e0f65023190ca3ebe5c095/details HTTP/1.1
+
+
+###
+
+##Получить список фильмов определённого жанра
+GET http://localhost:4000/films/qweqwe/films HTTP/1.1
+
 ## Создать новый фильм
 
 POST http://localhost:4000/films HTTP/1.1
@@ -53,6 +65,8 @@ Content-Type: application/json
   "bacgroundColor": "nmnmmn"
 }
 
+
+
 ###
 
 ## Удалить фильм
@@ -61,8 +75,10 @@ DELETE http://localhost:4000/films HTTP/1.1
 Content-Type: application/json
 
 {
-  "id": "63e0f65023190ca3ebe5c095"
+  "id": "63e0f883685e813075ac136c"
 }
+
+###
 
 #Жанры
 ## Получить список жанров
@@ -78,7 +94,7 @@ POST http://localhost:4000/genres HTTP/1.1
 Content-Type: application/json
 
 {
-  "name": "Actionjjgg"
+  "name": "Actionjjgh"
 }
 
 ###

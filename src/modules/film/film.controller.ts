@@ -12,6 +12,15 @@ import FilmResponse from './response/film.response.js';
 import DeleteFilmDto from './dto/delete-film.dto.js';
 import FilmDeleteResponse from './response/film-delete.response.js';
 import UpdateFilmDto from './dto/update-film.dto.js';
+import * as core from 'express-serve-static-core';
+
+type ParamsGetFilm = {
+  filmId: string;
+}
+
+type ParamsGetGenreId = {
+  genreId: string;
+}
 
 @injectable()
 export default class FilmController extends Controller {
@@ -26,6 +35,36 @@ export default class FilmController extends Controller {
     this.addRoute({path: '/', method: HttpMethod.Post, handler: this.create});
     this.addRoute({path: '/', method: HttpMethod.Delete, handler: this.delete});
     this.addRoute({path: '/', method: HttpMethod.Patch, handler: this.update});
+    this.addRoute({path: '/:filmId/promo', method: HttpMethod.Get, handler: this.show});
+    this.addRoute({
+      path: '/:filmId/details',
+      method: HttpMethod.Get,
+      handler: this.show,
+    });
+    this.addRoute({
+      path: '/:genreId/films',
+      method: HttpMethod.Get,
+      handler: this.showWithGenreId,
+    });
+  }
+
+
+  public async show(
+    {params}: Request<core.ParamsDictionary | ParamsGetFilm>,
+    res: Response
+  ): Promise<void> {
+    const {filmId} = params;
+    const film = await this.filmService.findById(filmId);
+    this.ok(res, fillDTO(FilmResponse, film));
+  }
+
+  public async showWithGenreId(
+    {params}: Request<core.ParamsDictionary | ParamsGetGenreId>,
+    res: Response
+  ): Promise<void> {
+    const {genreId} = params;
+    const films = await this.filmService.findByGenreId(genreId);
+    this.ok(res, fillDTO(FilmResponse, films));
   }
 
   public async index(_req: Request, res: Response): Promise<void> {
