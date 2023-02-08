@@ -1,12 +1,8 @@
 import {Expose} from 'class-transformer';
 
-export default class FilmDeleteResponse {
+export default class FilmTitleResponse {
 
   @Expose()
   public title!: string;
-
-  @Expose()
-  public text!: string;
-
 
 }

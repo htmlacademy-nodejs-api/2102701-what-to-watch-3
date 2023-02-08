@@ -51,7 +51,7 @@ export class FilmEntity extends defaultClasses.TimeStamps {
   public director!: string;
 
   @prop({required: true})
-  public runTime!: string;
+  public runTime!: number;
 
   @prop()
   public commentCount!: number;
@@ -68,7 +68,7 @@ export class FilmEntity extends defaultClasses.TimeStamps {
   public backgroundImg!: string;
 
   @prop({required: true})
-  public bacgroundColor!: string;
+  public backgroundColor!: string;
 
 }
 
