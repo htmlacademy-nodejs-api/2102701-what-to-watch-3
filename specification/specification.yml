@@ -128,7 +128,7 @@ paths:
         '409':
           description: Фильм не создан. Данные невалидны.
 
-  /films/updateFilm:
+  /films/{filmId}:
     patch:
       tags:
         - films

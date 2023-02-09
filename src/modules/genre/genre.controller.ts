@@ -10,18 +10,35 @@ import GenreResponse from './response/genre.response.js';
 import {fillDTO} from '../../utils/common.js';
 import CreateGenreDto from './dto/create-genre.dto.js';
 import HttpError from '../../common/errors/http-errors.js';
+import * as core from 'express-serve-static-core';
+import {FilmServiceInterface} from '../film/film-service.interface.js';
+import FilmResponse from '../film/response/film.response.js';
+import {RequestQuery} from '../../types/request-query.type.js';
+import { ValidateObjectIdMiddleware } from '../../common/middlewares/validate-objectid.middleware.js';
+
+
+type ParamsGetGenre = {
+  genreId: string;
+}
 
 @injectable()
 export default class GenreController extends Controller {
   constructor(
     @inject(Component.LoggerInterface) logger: LoggerInterface,
     @inject(Component.GenreServiceInterface) private readonly genreService: GenreServiceInterface,
+    @inject(Component.FilmServiceInterface) private readonly filmService: FilmServiceInterface
   ) {
     super(logger);
 
     this.logger.info('Register routes for GenreController...');
     this.addRoute({path: '/', method: HttpMethod.Get, handler: this.index});
     this.addRoute({path: '/', method: HttpMethod.Post, handler: this.create});
+    this.addRoute({
+      path: '/:genreId/films',
+      method: HttpMethod.Get,
+      handler: this.getFilmsFromGenre,
+      middlewares: [new ValidateObjectIdMiddleware('genreId')]
+    });
   }
 
   public async index(_req: Request, res: Response): Promise<void> {
@@ -50,5 +67,13 @@ export default class GenreController extends Controller {
       StatusCodes.CREATED,
       fillDTO(GenreResponse, result)
     );
+  }
+
+  public async getFilmsFromGenre(
+    {params, query}: Request<core.ParamsDictionary | ParamsGetGenre, unknown, unknown, RequestQuery>,
+    res: Response
+  ):Promise<void> {
+    const films = await this.filmService.findByGenreId(params.genreId, query.limit);
+    this.ok(res, fillDTO(FilmResponse, films));
   }
 }
