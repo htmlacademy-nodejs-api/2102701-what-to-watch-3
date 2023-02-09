@@ -44,6 +44,17 @@ paths:
         "409":
           description: Пользователь с таким email уже существует.
 
+  /users/{userId}/avatar:
+    post:
+      tags:
+        - users
+      summary: Загрузить изображение аватара
+      description: Загружает изображение аватара пользователя. Изображение
+        аватара должно быть в формате `png` или `jpg`.
+      responses:
+        '200':
+          description: Аватар загружен
+
   /users/login:
     post:
       tags:
