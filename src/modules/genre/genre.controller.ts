@@ -15,6 +15,8 @@ import {FilmServiceInterface} from '../film/film-service.interface.js';
 import FilmResponse from '../film/response/film.response.js';
 import {RequestQuery} from '../../types/request-query.type.js';
 import { ValidateObjectIdMiddleware } from '../../common/middlewares/validate-objectid.middleware.js';
+import {PrivateRouteMiddleware} from '../../common/middlewares/private-route.middleware.js';
+import { ValidateDtoMiddleware } from '../../common/middlewares/validate-dto.middleware.js';
 
 
 type ParamsGetGenre = {
@@ -32,7 +34,15 @@ export default class GenreController extends Controller {
 
     this.logger.info('Register routes for GenreController...');
     this.addRoute({path: '/', method: HttpMethod.Get, handler: this.index});
-    this.addRoute({path: '/', method: HttpMethod.Post, handler: this.create});
+    this.addRoute({
+      path: '/',
+      method: HttpMethod.Post,
+      handler: this.create,
+      middlewares: [
+        new PrivateRouteMiddleware(),
+        new ValidateDtoMiddleware(CreateGenreDto)
+      ]
+    });
     this.addRoute({
       path: '/:genreId/films',
       method: HttpMethod.Get,
