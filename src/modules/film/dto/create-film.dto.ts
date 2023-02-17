@@ -41,8 +41,7 @@ export default class CreateFilmDto {
   @IsInt()
   public runTime!: number;
 
-  @IsMongoId({message: 'Поле userId должно содержать валидный ID'})
-  public userId?: string;
+  public userId!: string;
 
   @IsString()
   public poster!: string;

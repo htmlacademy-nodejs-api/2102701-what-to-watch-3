@@ -9,6 +9,5 @@ export default class CreateCommentDto {
   @IsMongoId({message: 'Поле filmId должно содержать валидный id'})
   public filmId!: string;
 
-  @IsMongoId({message: 'Поле userId должно содержать валидный id'})
   public userId!: string;
 }
