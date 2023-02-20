@@ -31,17 +31,49 @@ Content-Type: application/json
   "genres": ["qweqwefdfdffdfdf"],
   "releaseDate": "erer",
   "rating": 8,
-  "previewVideo": "ererer",
-  "video": "dfdf",
+  "previewVideo": "ererer.ru",
+  "video": "dfdf.ru",
   "actors": ["klkl"],
   "director": "l;;l",
-  "runTime": "zxzx",
+  "runTime": "123",
   "poster": "qwqwqwqwq",
   "backgroundImg": "xcxcxcxc",
-  "backgroundColor": "nmnmmn",
+  "backgroundColor": "red",
   "genres": ["63de171e72503699e9e192cd"],
   "userId": "63e0f68323190ca3ebe5c0a0"
 }
+
+###
+
+## добавить в вачлист
+
+POST http://localhost:4000/watchlist HTTP/1.1
+Content-Type: application/json
+
+{
+  "userId": "63f10057aff9dfadaa2b9c35",
+  "filmId": "63f1003daff9dfadaa2b9c30"
+}
+
+###
+
+## удалить из вачлиста
+
+DELETE http://localhost:4000/watchlist HTTP/1.1
+Content-Type: application/json
+
+{
+  "userId": "63f10057aff9dfadaa2b9c35",
+  "filmId": "63f1003daff9dfadaa2b9c30"
+}
+
+###
+
+## список вачлист
+
+GET http://localhost:4000/watchlist/63f10057aff9dfadaa2b9c35/films HTTP/1.1
+Content-Type: application/json
+
 
 ###
 
@@ -65,7 +97,7 @@ Content-Type: application/json
   "runTime": "zxzx",
   "poster": "qwqwqwqwq",
   "backgroundImg": "xcxcxcxc",
-  "bacgroundColor": "nmnmmn"
+  "backgroundColor": "nmnmmn"
 }
 
 
@@ -134,7 +166,7 @@ POST http://localhost:4000/users/login HTTP/1.1
 Content-Type: application/json
 
 {
-  "email": "torans@overlool.net",
+  "email": "torans@overloo.net",
   "password": "shining"
 }
 

@@ -25,7 +25,7 @@ export const createFilm = (row: string) => {
     avatarPath,
     password,
     backgroundImg,
-    bacgroundColor,
+    backgroundColor,
   ] = tokens;
   return {
     title,
@@ -44,7 +44,7 @@ export const createFilm = (row: string) => {
     poster,
     user: {name, email, avatarPath, password},
     backgroundImg,
-    bacgroundColor,
+    backgroundColor,
   } as Film;
 };
 

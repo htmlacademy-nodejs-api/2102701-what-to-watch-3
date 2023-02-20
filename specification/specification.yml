@@ -75,7 +75,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/token'
 
-        '409':
+        '401':
           description: Вход не произведён.
 
   /users/logout:
@@ -94,8 +94,6 @@ paths:
       responses:
         '200':
           description: Выход произведён
-        '409':
-          description: Выход не произвёден
 
     get:
       tags:
@@ -109,7 +107,7 @@ paths:
             schema:
               $ref: '#/components/schemas/token'
       responses:
-        '201':
+        '200':
           description: Информация о пользователе
           content:
             application/json:
@@ -136,7 +134,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/film'
-        '409':
+        '400':
           description: Фильм не создан. Данные невалидны.
 
   /films/{filmId}:
@@ -153,13 +151,13 @@ paths:
               $ref: '#/components/schemas/createFilm'
 
       responses:
-        '201':
+        '200':
           description: Фильм обновлён. Объект фильма.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/film'
-        '410':
+        '400':
           description: Фильм не создан. Данные невалидны.
 
   /films/deleteFilm:
@@ -169,7 +167,7 @@ paths:
       summary: Удаление карточки фильма
       description: Удаляет фильм
       responses:
-        '411':
+        '400':
           description: Попытка удалить чужой фильм
 
   /films/getFilmsList:
@@ -179,7 +177,7 @@ paths:
       summary: Получение списка фильмов
       description: Получает список фильмов, отсортированный по дате поубликации (по убыванию)
       responses:
-        '201':
+        '200':
           description: Получен список фильмов
           content:
             application/json:
@@ -195,7 +193,7 @@ paths:
       summary: Получение списка фильмов определённого жанра
       description: Получает список фильмов определённого жанра, отсортированный по дате поубликации (по убыванию)
       responses:
-        '201':
+        '200':
           description: Получен список фильмов
           content:
             application/json:
@@ -211,7 +209,7 @@ paths:
       summary: Получение детальной информации о фильме
       description: Получает детальную информацию о фильме
       responses:
-        '201':
+        '200':
           description: Получена детальная информация о фильме
           content:
             application/json:
@@ -225,21 +223,21 @@ paths:
       summary: Получение промо-фильма
       description: Получает промо фильм
       responses:
-        '201':
+        '200':
           description: Получен промо фильм
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/createFilm'
 
-  /films/favorites:
+  /films/watchlist:
     get:
       tags:
         - films
       summary: Получение списка фильмов к просмотру
       description: Получает список фильмов добавленных к просмотру.
       responses:
-        '201':
+        '200':
           description: Получен список фильмов к просмотру
           content:
             application/json:
@@ -260,7 +258,7 @@ paths:
             schema:
               $ref: '#/components/schemas/film'
       responses:
-        '201':
+        '200':
           description: Фильм добавлен
           content:
             application/json:
@@ -268,6 +266,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/filmInList'
+        '422':
+          description: Фильм не добавлен.
 
     delete:
       tags:
@@ -281,7 +281,7 @@ paths:
             schema:
               $ref: '#/components/schemas/film'
       responses:
-        '201':
+        '200':
           description: Фильм удалён
 
   /comments/{filmId}/comment:
@@ -291,7 +291,7 @@ paths:
       summary: Получить список комментариев
       description: Получает список комментариев для определённого фильма
       responses:
-        '201':
+        '200':
           description: Комментарии получены
           content:
             application/json:
@@ -319,7 +319,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/comment'
 
-        '409':
+        '400':
           description: Комментарий не добавлен. Данные невалидны.
 
 

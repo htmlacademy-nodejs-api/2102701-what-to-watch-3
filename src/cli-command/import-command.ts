@@ -16,9 +16,8 @@ import {DatabaseInterface} from '../common/database-client/database.interface.js
 import {GenreServiceInterface} from '../modules/genre/genre-service.interface.js';
 import GenreService from '../modules/genre/genre.service.js';
 import {GenreModel} from '../modules/genre/genre.entity.js';
-// import chalk from 'chalk';
 
-const DEFAULT_DB_PORT = 27017;
+const DEFAULT_DB_PORT = '27017';
 const DEFAULT_USER_PASSWORD = '123456';
 
 export default class ImportCommand implements CliCommandInterface {
