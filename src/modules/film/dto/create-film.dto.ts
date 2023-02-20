@@ -1,4 +1,4 @@
-import {IsArray, IsDateString, IsString, IsInt, IsMongoId, Max, MaxLength, Min, MinLength, IsRgbColor, IsUrl} from 'class-validator';
+import {IsArray, IsDateString, IsString, IsMongoId, Max, MaxLength, Min, MinLength, IsUrl, IsInt} from 'class-validator';
 
 export default class CreateFilmDto {
   @MinLength(2, {message: 'Минимальная длина названия 2'})
@@ -22,7 +22,7 @@ export default class CreateFilmDto {
   @IsInt()
   @Min(0, {message: 'Минимальное значени 0'})
   @Max(10, {message: 'Максимальное значение 10'})
-  public rating!: number;
+  public rating!: string;
 
   @IsUrl()
   public previewVideo!: string;
@@ -38,8 +38,8 @@ export default class CreateFilmDto {
   @MaxLength(50, {message: 'Максимальная длина 50'})
   public director!: string;
 
-  @IsInt()
-  public runTime!: number;
+  @IsString()
+  public runTime!: string;
 
   public userId!: string;
 
@@ -49,6 +49,6 @@ export default class CreateFilmDto {
   @IsString()
   public backgroundImg!: string;
 
-  @IsRgbColor()
-  public bacgroundColor!: string;
+  @IsString()
+  public backgroundColor!: string;
 }

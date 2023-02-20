@@ -17,5 +17,5 @@ export type Film = {
   user: User;
   poster: string;
   backgroundImg: string;
-  bacgroundColor: string;
+  backgroundColor: string;
 };

@@ -66,5 +66,5 @@ export default class CreateFilmDto {
 
   @IsOptional()
   @IsRgbColor()
-  public bacgroundColor?: string;
+  public backgroundColor?: string;
 }

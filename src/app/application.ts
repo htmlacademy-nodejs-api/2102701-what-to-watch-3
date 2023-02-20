@@ -23,6 +23,7 @@ export default class Application {
     @inject(Component.FilmController) private filmController: ControllerInterface,
     @inject(Component.ExceptionFilterInterface) private exceptionFilter: ExceptionFilterInterface,
     @inject(Component.CommentController) private commentController: ControllerInterface,
+    @inject(Component.WatchlistController) private watchlistController: ControllerInterface,
   ) {
     this.expressApp = express();
   }
@@ -32,6 +33,7 @@ export default class Application {
     this.expressApp.use('/users', this.userController.router);
     this.expressApp.use('/films', this.filmController.router);
     this.expressApp.use('/comments', this.commentController.router);
+    this.expressApp.use('/watchlist', this.watchlistController.router);
   }
 
   public initMiddleware() {

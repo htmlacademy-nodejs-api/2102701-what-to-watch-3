@@ -12,8 +12,6 @@ export interface WatchlistEntity extends defaultClasses.Base {}
   }
 })
 export class WatchlistEntity extends defaultClasses.TimeStamps {
-  @prop({trim: true, required: true})
-  public id!: string;
 
   @prop({
     ref: FilmEntity,
