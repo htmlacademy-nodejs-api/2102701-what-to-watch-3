@@ -111,5 +111,3 @@ export default class UserController extends Controller {
     this.ok(res, fillDTO(LoggedUserResponse, user));
   }
 }
-
-
