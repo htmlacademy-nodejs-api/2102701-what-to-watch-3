@@ -86,7 +86,7 @@ export default class WatchlistController extends Controller {
     if (existFilm) {
       throw new HttpError(
         StatusCodes.UNPROCESSABLE_ENTITY,
-        `Film exists.`,
+        'Film exists.',
         'WatchlistController'
       );
     }
@@ -103,9 +103,9 @@ export default class WatchlistController extends Controller {
     {params}: Request<core.ParamsDictionary | ParamsGetUser, unknown, unknown, RequestQuery>,
     res: Response
   ):Promise<void> {
-    console.log(params)
+    console.log(params);
     const films = await this.watchlistService.findByUserId(params.userId);
-    console.log(films)
+    console.log(films);
     this.ok(res, fillDTO(WatchlistResponse, films));
   }
 }

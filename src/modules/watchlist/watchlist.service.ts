@@ -18,13 +18,13 @@ export default class WatchlistService implements WatchlistServiceInterface {
 
   public async exist (userId: string, filmId: string): Promise<DocumentType<WatchlistEntity> | null> {
     return this.watchlistModel
-      .findOne({userId, filmId})
+      .findOne({userId, filmId});
   }
 
   public async findByUserId (userId: string): Promise<DocumentType<WatchlistEntity>[]> {
     return this.watchlistModel
       .find({userId})
-      .populate(['userId', 'filmId'])
+      .populate(['userId', 'filmId']);
   }
 
   public async deleteOne(userId: string, filmId: string): Promise<number> {
@@ -32,6 +32,6 @@ export default class WatchlistService implements WatchlistServiceInterface {
       .deleteOne({userId, filmId})
       .exec();
 
-      return result.deletedCount;
+    return result.deletedCount;
   }
 }

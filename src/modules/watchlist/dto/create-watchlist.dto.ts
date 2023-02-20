@@ -1,4 +1,4 @@
-import { IsArray, IsDateString, IsInt, IsMongoId, IsString, IsUrl, MaxLength, MinLength } from "class-validator";
+import { IsArray, IsDateString, IsInt, IsMongoId, IsString, IsUrl, MaxLength, MinLength } from 'class-validator';
 
 export default class CreateWatchlistDto {
   @MinLength(2, {message: 'Минимальная длина названия 2'})
